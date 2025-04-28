@@ -1,0 +1,35 @@
+package test;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import datos.Cliente;
+import datos.Persona;
+import negocio.ClienteABM;
+
+public class TestCliente {
+
+    public static void main(String[] args) {
+    	
+        ClienteABM clienteABM = new ClienteABM();
+
+        try {
+            // Agregar un cliente
+        	
+        	Cliente c1 = new Cliente(39349645, "Roberto", "Gomez", LocalDate.now(), true);
+        	
+        	int idCliente = clienteABM.agregarCliente(c1.getDni(), c1.getNombre(), c1.getApellido(), c1.getFechaAlta(), c1.isActivo());
+        	System.out.println("CLIENTE AGREGADO: " + idCliente);
+        	
+        	
+            // Traer el cliente por ID
+            Cliente cliente = clienteABM.traer(idCliente);
+            System.out.println("TRAER CLIENTE ID: " + cliente);
+
+
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}

@@ -1,0 +1,48 @@
+package test;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import datos.Cliente;
+import datos.Persona;
+import negocio.ClienteABM;
+
+public class TestCliente {
+
+    public static void main(String[] args) {
+    	
+        ClienteABM clienteABM = new ClienteABM();
+
+        try {
+            // Agregar un cliente
+        	
+        	Cliente c1 = new Cliente(39349645, "Roberto", "Gomez", LocalDate.now(), true);
+        	
+        	int idCliente = clienteABM.agregarCliente(c1.getDni(), c1.getNombre(), c1.getApellido(), c1.getFechaAlta(), c1.isActivo());
+        	System.out.println("Cliente agregado con ID: " + idCliente);
+
+//            // Traer el cliente por ID
+//            Cliente cliente = clienteABM.traer(idCliente);
+//            System.out.println("Cliente traído por ID: " + cliente);
+//
+//            // Modificar cliente
+//            cliente.setApellido("González");
+//            clienteABM.modificar(cliente);
+//            System.out.println("Cliente modificado: " + clienteABM.traer(idCliente));
+//
+//            // Traer todos los clientes
+//            List<Cliente> listaClientes = clienteABM.traerTodos();
+//            System.out.println("\nLista de todos los clientes:");
+//            for (Cliente c : listaClientes) {
+//                System.out.println(c);
+//            }
+//
+//            // Eliminar el cliente
+//            clienteABM.eliminar(idCliente);
+//            System.out.println("\nCliente eliminado con ID: " + idCliente);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
