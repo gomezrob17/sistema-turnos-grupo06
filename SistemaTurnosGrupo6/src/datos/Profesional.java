@@ -5,6 +5,7 @@ public class Profesional extends Persona {
 	private String matricula;
     private double sueldo;
     private boolean activo;
+    //private Especialidad especialidad;
 	
     
     public Profesional() {
@@ -12,11 +13,12 @@ public class Profesional extends Persona {
 	}
 
 
-	public Profesional(int dni, String nombre, String apellido,String matricula, double sueldo, boolean activo) {
+	public Profesional(int dni, String nombre, String apellido,String matricula, double sueldo, boolean activo/*,Especialidad especialidad*/) {
 		super(dni,nombre,apellido);
 		this.matricula = matricula;
 		this.sueldo = sueldo;
 		this.activo = activo;
+		//this.especialidad = especialidad;
 	}
 
 
@@ -48,16 +50,28 @@ public class Profesional extends Persona {
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
+	
+/*
+	public Especialidad getEspecialidad() {
+		return especialidad;
+	}
+
+
+	public void setEspecialidad(Especialidad especialidad) {
+		this.especialidad = especialidad;
+	}*/
 
 
 	@Override
 	public String toString() {
 		return "Profesional [" + super.toString()+ ",matricula=" + matricula + ", sueldo=" + sueldo + ", activo=" + activo + "]";
 	}
-    
-    
 	
-	
+	//para cuando la clase especialidad sea creada
+//	@Override
+//	public String toString() {
+//		return "Profesional [" + super.toString()+ ",matricula=" + matricula + ", sueldo=" + sueldo + ", activo=" + activo + ", especialidad=" + especialidad + "]";
+//	}
 	
 	
 }

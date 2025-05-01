@@ -18,6 +18,7 @@
       <key column="idPersona" />
       <property name="fechaAlta" />
       <property name="activo" />
+      <!-- Para cuando Contacto sea creada: dejar-> <one-to-one name="contacto" class="datos.Contacto"/> -->
     </joined-subclass>
 
 <!-- Atributos de la clase Profesional -->
@@ -26,6 +27,7 @@
       <property name="matricula" />
       <property name="sueldo" />
       <property name="activo" />
+      <!-- Para cuando Especialidad sea creada: dejar-> <many-to-one name="especialidad" class="datos.Especialidad" column="idEspecialidad"/> -->
     </joined-subclass>
     
   </class>
