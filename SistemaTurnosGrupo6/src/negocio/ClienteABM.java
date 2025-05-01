@@ -10,19 +10,17 @@ public class ClienteABM {
 
     ClienteDao dao = new ClienteDao();
     
+    
 /*AGREGAR CLIENTE*/
-	public int agregarCliente(int dni, String nombre, String apellido, LocalDate fechaAlta, boolean activo)throws Exception {
-
-		Cliente encontrado = dao.traerDniCliente(dni);
-
-		if (encontrado != null) {
-			throw new Exception("YA EXISTE UN CLIENTE CON ESE DNI");
-		}
-
-		Cliente c = new Cliente(dni,nombre,apellido,fechaAlta,activo);
-		return dao.agregarCliente(c);
-	}
-
+    public int agregarCliente(Cliente c) throws Exception {
+      
+        if (dao.traerDniCliente(c.getDni()) != null) {
+            throw new Exception("YA EXISTE UN CLIENTE CON ESE DNI");
+        }
+        return dao.agregarCliente(c);
+    }
+	
+	
 /*MODIFICAR CLIENTE*/	
     public void modificarCliente(Cliente c) throws Exception {
     	
@@ -35,25 +33,21 @@ public class ClienteABM {
     }
 
 /*ELIMINAR CLIENTE*/
-    public void eliminarCliente(int idCliente) throws Exception {
+    public void eliminarCliente(Cliente c) throws Exception {
     	
-        Cliente c = dao.traerClientePorId(idCliente);
+        Cliente encontrado = dao.traerClientePorId(c.getIdPersona());
         
-        if (c == null) {
+        if (encontrado == null) {
             throw new Exception("CLIENTE NO ENCONTRADO");
         }
         
         dao.eliminarCliente(c);
     }
 
-/*TRAER CLIENTE POR ID*/
-    public Cliente traer(int idCliente) {
-        return dao.traerClientePorId(idCliente);
-    }
-    
+
 /*TRAER CLIENTE POR DNI*/
-    public Cliente traerPorDni(int dni) {
-        return dao.traerDniCliente(dni);
+    public Cliente traerPorDni(Cliente c) {
+        return dao.traerDniCliente(c.getDni());
     }
 
 /*TRAER TODOS LOS CLIENTES*/    

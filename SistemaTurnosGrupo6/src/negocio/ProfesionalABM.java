@@ -10,15 +10,11 @@ public class ProfesionalABM {
     ProfesionalDao dao = new ProfesionalDao();
     
 /*AGREGAR PROFESIONAL*/    
-    public int agregarProfesional(int dni, String nombre, String apellido, String matricula, double sueldo, boolean activo) throws Exception {
+    public int agregarProfesional(Profesional p) throws Exception {
         
-        Profesional encontrado = dao.traerDniProfesional(dni);
-        
-        if (encontrado != null) {
+        if (dao.traerDniProfesional(p.getDni()) != null) {
             throw new Exception("YA EXISTE UN PROFESIONAL CON ESE DNI");
         }
-        
-        Profesional p = new Profesional(dni, nombre, apellido, matricula, sueldo, activo);
         return dao.agregarProfesional(p);
     }
 
@@ -35,25 +31,21 @@ public class ProfesionalABM {
     }
 
 /*ELIMINAR PROFESIONAL*/  
-    public void eliminarProfesional(int idProfesional) throws Exception {
+    public void eliminarProfesional(Profesional p) throws Exception {
+    	
+        Profesional encontrado = dao.traerProfesionalPorId(p.getIdPersona());
         
-        Profesional p = dao.traerProfesionalPorId(idProfesional);
-        
-        if (p == null) {
+        if (encontrado == null) {
             throw new Exception("PROFESIONAL NO ENCONTRADO");
         }
         
         dao.eliminarProfesional(p);
     }
 
-/*TRAER PROFESIONAL POR ID*/    
-    public Profesional traer(int idProfesional) {
-        return dao.traerProfesionalPorId(idProfesional);
-    }
 
 /*TRAER PROFESIONAL POR DNI*/    
-    public Profesional traerPorDni(int dni) {
-        return dao.traerDniProfesional(dni);
+    public Profesional traerPorDni(Profesional p) {
+        return dao.traerDniProfesional(p.getDni());
     }
 
 /*TRAER TODOS LOS PROFESIONALES*/    

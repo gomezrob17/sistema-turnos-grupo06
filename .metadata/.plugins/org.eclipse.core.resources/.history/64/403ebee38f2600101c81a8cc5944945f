@@ -1,0 +1,55 @@
+package test;
+
+import java.time.LocalDate;
+
+
+import datos.Cliente;
+import negocio.ClienteABM;
+
+public class TestCliente {
+
+    public static void main(String[] args) {
+    	
+        ClienteABM clienteABM = new ClienteABM();
+
+        try {
+            // Agregar un cliente
+        	Cliente c1 = new Cliente(39349644, "Roberto", "Gomez", LocalDate.now(), true);
+//        	Cliente c2 = new Cliente(37349646, "Lucas", "Rodriguez", LocalDate.now(), true);
+//        	Cliente c3 = new Cliente(36347647, "Pedro", "Suarez", LocalDate.now(), false);
+//        	Cliente c4 = new Cliente(41341644, "Martina", "Gonzales", LocalDate.now(), true);
+//        	
+//        	clienteABM.agregarCliente(c1);
+//        	clienteABM.agregarCliente(c2);
+//        	clienteABM.agregarCliente(c3);
+//        	clienteABM.agregarCliente(c4);
+//        	
+//        	System.out.println("CLIENTE AGREGADO : " + c1);
+//        	System.out.println("CLIENTE AGREGADO : " + c2);
+//        	System.out.println("CLIENTE AGREGADO : " + c3);
+//        	System.out.println("CLIENTE AGREGADO : " + c4);
+
+        	System.out.println("********************* TRAER CLIENTE DNI********************************************");
+        	// Traer un cliente por DNI
+            System.out.println("Cliente DNI: " + clienteABM.traerPorDni(c1));
+        	
+            System.out.println("********************* MODIFICAR CLIENTE********************************************");
+            //Modificar un cliente
+        	c1.setApellido("Juarez");
+        	clienteABM.modificarCliente(clienteABM.traerPorDni(c1));
+            System.out.println("Cliente Modificado: " + clienteABM.traerPorDni(c1));
+            
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+        	
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}

@@ -1,0 +1,29 @@
+package test;
+
+import java.time.LocalDate;
+
+
+import datos.Cliente;
+import negocio.ClienteABM;
+
+public class TestCliente {
+
+    public static void main(String[] args) {
+    	
+        ClienteABM clienteABM = new ClienteABM();
+
+        try {
+            // Agregar un cliente
+        	Cliente c1 = new Cliente(39349644, "Roberto", "Gomez", LocalDate.now(), true);
+        	
+        	clienteABM.agregarCliente(c1);
+        	System.out.println("CLIENTE AGREGADO : " + c1);
+
+
+
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}

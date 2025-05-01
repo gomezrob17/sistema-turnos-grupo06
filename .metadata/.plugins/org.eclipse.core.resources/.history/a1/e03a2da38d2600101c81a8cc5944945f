@@ -1,0 +1,73 @@
+package negocio;
+
+import dao.ClienteDao;
+import datos.Cliente;
+
+import java.time.LocalDate;
+import java.util.List;
+
+public class ClienteABM {
+
+    ClienteDao dao = new ClienteDao();
+    
+/*AGREGAR CLIENTE*/
+//	public int agregarCliente(int dni, String nombre, String apellido, LocalDate fechaAlta, boolean activo)throws Exception {
+//
+//		Cliente encontrado = dao.traerDniCliente(dni);
+//
+//		if (encontrado != null) {
+//			throw new Exception("YA EXISTE UN CLIENTE CON ESE DNI");
+//		}
+//
+//		Cliente c = new Cliente(dni,nombre,apellido,fechaAlta,activo);
+//		return dao.agregarCliente(c);
+//	}
+
+    public int agregarCliente(Cliente c) throws Exception {
+      
+        if (dao.traerDniCliente(c.getDni()) != null) {
+            throw new Exception("YA EXISTE UN CLIENTE CON ESE DNI");
+        }
+        return dao.agregarCliente(c);
+    }
+	
+	
+	
+/*MODIFICAR CLIENTE*/	
+    public void modificarCliente(Cliente c) throws Exception {
+    	
+        Cliente encontrado = dao.traerClientePorId(c.getIdPersona());
+        
+        if (encontrado == null) {
+            throw new Exception("CLIENTE NO ENCONTRADO");
+        }
+        dao.modificarCliente(c);
+    }
+
+/*ELIMINAR CLIENTE*/
+    public void eliminarCliente(Cliente c) throws Exception {
+    	
+        Cliente encontrado = dao.traerClientePorId(c.getIdPersona());
+        
+        if (encontrado == null) {
+            throw new Exception("CLIENTE NO ENCONTRADO");
+        }
+        
+        dao.eliminarCliente(c);
+    }
+
+/*TRAER CLIENTE POR ID*/
+    public Cliente traerCliente(Cliente c) {
+        return dao.traerClientePorId(c.getIdPersona());
+    }
+    
+/*TRAER CLIENTE POR DNI*/
+    public Cliente traerPorDni(Cliente c) {
+        return dao.traerDniCliente(c.getDni());
+    }
+
+/*TRAER TODOS LOS CLIENTES*/    
+    public List<Cliente> traerTodos() {
+        return dao.traerTodosLosClientes();
+    }
+}
