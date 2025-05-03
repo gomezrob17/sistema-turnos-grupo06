@@ -44,8 +44,8 @@ public class ProfesionalABM {
 
 
 /*TRAER PROFESIONAL POR DNI*/    
-    public Profesional traerPorDni(Profesional p) {
-        return dao.traerDniProfesional(p.getDni());
+    public Profesional traerPorDni(int dni) {
+        return dao.traerDniProfesional(dni);
     }
 
 /*TRAER TODOS LOS PROFESIONALES*/    

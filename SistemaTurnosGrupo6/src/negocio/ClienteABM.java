@@ -46,8 +46,8 @@ public class ClienteABM {
 
 
 /*TRAER CLIENTE POR DNI*/
-    public Cliente traerPorDni(Cliente c) {
-        return dao.traerDniCliente(c.getDni());
+    public Cliente traerPorDni(int dni) {
+        return dao.traerDniCliente(dni);
     }
 
 /*TRAER TODOS LOS CLIENTES*/    

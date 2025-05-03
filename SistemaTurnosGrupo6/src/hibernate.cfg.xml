@@ -7,7 +7,7 @@
         <!-- MODIFICAR  -->
         <property name="connection.username">root</property>
         <!-- MODIFICAR  -->
-        <property name="connection.password">root</property>
+        <property name="connection.password">tonyus12</property>
         <property name="connection.pool_size">1</property>
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
@@ -15,7 +15,7 @@
         
         <!-- Mapeo Entidades  -->
         <mapping resource="mapeos/Persona.hbm.xml"/>
-        
-        
+        <mapping resource="mapeos/Sucursal.hbm.xml"/>
+        <mapping resource="mapeos/Turno.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

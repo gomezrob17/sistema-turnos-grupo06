@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  
+  <class name="datos.Turno" table="turno">
+    
+    <!-- Mapeo de la clave primaria -->
+    <id name="idTurno" column="idTurno">
+      <generator class="identity"/>
+    </id>
+
+    <!-- Mapeo de las propiedades -->
+    <property name="fecha" column="fecha"/>
+    <property name="hora" column="hora"/>
+
+    <!-- Relación con la clase Cliente -->
+    <many-to-one name="cliente" column="idCliente" class="datos.Cliente" />
+    
+    <!-- Relación con la clase Profesional -->
+    <many-to-one name="profesiona" column="idProfesional" class="datos.Profesional" />
+    
+    <!-- Relación con la clase Sucursal -->
+    <many-to-one name="sucursal" column="idSucursal" class="datos.Sucursal" />
+
+  </class>
+
+</hibernate-mapping>
