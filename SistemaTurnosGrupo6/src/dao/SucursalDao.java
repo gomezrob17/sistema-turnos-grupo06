@@ -87,7 +87,7 @@ public class SucursalDao {
         return sucursal;
     }
 
-    // ✅ Caso de uso: Consultar sucursal por nombre (sin dirección)
+
     public List<Sucursal> traerSucursalesPorNombre(String nombre) throws HibernateException {
         List<Sucursal> lista = null;
         try {
@@ -102,7 +102,7 @@ public class SucursalDao {
         return lista;
     }
 
-    // ✅ Caso de uso: Traer todas las sucursales
+
     public List<Sucursal> traerTodas() throws HibernateException {
         List<Sucursal> lista = null;
         try {

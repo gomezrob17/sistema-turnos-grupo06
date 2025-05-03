@@ -31,7 +31,7 @@ public class TestProfesional {
 
          // Traer un profesional por DNI
         	System.out.println("********************* TRAER PROFESIONAL DNI********************************************");
-        	System.out.println("Profesional DNI: " + profesionalABM.traerPorDni(p1));
+        	System.out.println("Profesional DNI: " + profesionalABM.traerPorDni(39500011));
 
         	/*
          // Modificar un profesional

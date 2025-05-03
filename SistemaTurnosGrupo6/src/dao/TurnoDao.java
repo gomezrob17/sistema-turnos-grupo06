@@ -25,7 +25,7 @@ public class TurnoDao {
         throw new HibernateException("ERROR en la capa de acceso a datos", he);
     }
 
-    // Agregar un turno
+
     public int agregarTurno(Turno turno) throws HibernateException {
         int id = 0;
         try {
@@ -58,13 +58,13 @@ public class TurnoDao {
     public Turno traerTurnoPorId(int idTurno) throws HibernateException {
         Turno turno = null;
         try {
-            iniciaOperacion(); // 🔧 abre la sesión y la transacción
+            iniciaOperacion();
             String hql = "FROM Turno t WHERE t.idTurno = :idTurno";
             turno = (Turno) session.createQuery(hql)
                                    .setParameter("idTurno", idTurno)
                                    .uniqueResult();
         } finally {
-            if (session != null) session.close(); // 🔧 cierra la sesión
+            if (session != null) session.close();
         }
         return turno;
     }
@@ -72,7 +72,7 @@ public class TurnoDao {
     
     public void modificarTurno(Turno turno) throws HibernateException {
         try {
-            iniciaOperacion(); // ⚠️ Si esto falta, session es null y da el error que vos tenés
+            iniciaOperacion();
             session.update(turno);
             tx.commit();
         } catch (HibernateException he) {

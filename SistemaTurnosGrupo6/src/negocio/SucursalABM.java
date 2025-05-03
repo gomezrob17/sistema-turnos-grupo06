@@ -1,6 +1,6 @@
 package negocio;
 
-import java.util.List; // Import correcto para List
+import java.util.List;
 import dao.SucursalDao;
 import datos.Sucursal;
 
@@ -9,14 +9,14 @@ public class SucursalABM {
     SucursalDao dao = new SucursalDao();
 
     public int agregarSucursal(Sucursal sucursal) throws Exception {
-        // Validación si ya existe una sucursal con el mismo nombre y dirección
+       
         Sucursal existente = dao.traerSucursalPorNombreYDireccion(sucursal.getNombre(), sucursal.getDireccion());
 
         if (existente != null) {
             throw new Exception("YA EXISTE UNA SUCURSAL CON ESE NOMBRE Y DIRECCIÓN");
         }
 
-        // Agregar la nueva sucursal
+        
         return dao.agregarSucursal(sucursal);
     }
 
@@ -42,7 +42,7 @@ public class SucursalABM {
         dao.eliminarSucursal(dao.traerSucursalPorId(id));
     }
 
-    // ✅ Obtener todas las sucursales
+
     public List<Sucursal> traerTodasLasSucursales() throws Exception {
         List<Sucursal> sucursales = dao.traerTodas();
 
@@ -53,7 +53,6 @@ public class SucursalABM {
         return sucursales;
     }
 
-    // ✅ Consultar sucursal por nombre
     public List<Sucursal> consultarSucursalPorNombre(String nombre) throws Exception {
         List<Sucursal> sucursales = dao.traerSucursalesPorNombre(nombre);
 

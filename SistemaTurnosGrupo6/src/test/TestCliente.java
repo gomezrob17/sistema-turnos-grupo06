@@ -32,7 +32,7 @@ public class TestCliente {
 
         	// Traer un cliente por DNI
         	System.out.println("********************* TRAER CLIENTE DNI********************************************");
-        	System.out.println("Cliente DNI: " + clienteABM.traerPorDni(c1));
+        	System.out.println("Cliente DNI: " + clienteABM.traerPorDni(42555555));
         	
         	/*
             //Modificar un cliente

@@ -12,18 +12,16 @@ public class TurnoABM {
 
     TurnoDao dao = new TurnoDao();
 
-    // Alta de turno
+  
     public int altaTurno(LocalDate fecha, LocalTime hora, Cliente cliente, Profesional profesional, Sucursal sucursal) throws Exception {
-        // Validación para asegurarse de que no haya un turno en la misma fecha y hora
-        // Puedes hacer más validaciones si lo necesitas
-
+        
         Turno turnoExistente = dao.traerTurnoPorFechaYHora(fecha, hora, sucursal);
 
         if (turnoExistente != null) {
             throw new Exception("Ya existe un turno para esta fecha y hora en esta sucursal.");
         }
 
-        // Crear el nuevo turno
+ 
         Turno turno = new Turno(fecha, hora, cliente, profesional, sucursal);
         return dao.agregarTurno(turno);
     }
