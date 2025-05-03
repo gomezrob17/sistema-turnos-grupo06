@@ -1,5 +1,6 @@
 package dao;
 
+import java.time.LocalDate;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -94,4 +95,44 @@ public class ClienteDao {
         }
         return lista;
     }
+    
+    
+    @SuppressWarnings("unchecked")
+    public List<Cliente> listarClientesActivos() throws HibernateException {
+        List<Cliente> lista = null;
+        try {
+            iniciaOperacion();
+            lista = session.createQuery("from Cliente c where c.activo = true order by c.apellido asc, c.nombre asc").list();
+        } finally {
+            session.close();
+        }
+        return lista;
+    }
+    
+    @SuppressWarnings("unchecked")
+    public List<Cliente> listarClientesDadosDeBaja() throws HibernateException {
+        List<Cliente> lista = null;
+        try {
+            iniciaOperacion();
+            lista = session.createQuery("from Cliente c where c.activo = false order by c.apellido asc, c.nombre asc").list();
+        } finally {
+            session.close();
+        }
+        return lista;
+    }
+    
+    
+    @SuppressWarnings("unchecked")
+    public List<Cliente> traerClientesPorFechaAltaEntre(LocalDate fechaDesde, LocalDate fechaHasta)throws HibernateException {
+        List<Cliente> lista = null;
+        try {
+            iniciaOperacion();
+            lista = session.createQuery("from Cliente c " + "where c.fechaAlta between :fDesde and :fHasta " + "order by c.fechaAlta asc, c.apellido asc, c.nombre asc").setParameter("fDesde", fechaDesde).setParameter("fHasta", fechaHasta).list();
+        } finally {
+            session.close();
+        }
+        return lista;
+    }
+    
+    
 }

@@ -54,4 +54,29 @@ public class ClienteABM {
     public List<Cliente> traerTodos() {
         return dao.traerTodosLosClientes();
     }
+    
+/*CONSULTAR CLIENTE POR DNI*/    
+    public Cliente consultarPorDni(int dni) throws Exception {
+        Cliente c = dao.traerDniCliente(dni);
+        if (c == null) {
+            throw new Exception("NO EXISTE NINGUN CLIENTE CON ESE DNI: " + dni);
+        }
+        return c;
+    }
+    
+/*LISTAR CLIENTES ACTIVOS ES DECIR, ACTIVO = TRUE*/    
+    public List<Cliente> listarClientesActivos() {
+        return dao.listarClientesActivos();
+    }
+    
+/*LISTAR CLIENTES DADOS DE BAJA ES DECIR, ACTIVO = FALSE*/    
+    public List<Cliente> listarClientesDadosDeBaja() {
+        return dao.listarClientesDadosDeBaja();
+    }
+    
+/*LISTAR CLIENTES POR FECHA DE ALTA DESDE-HASTA*/ 
+    public List<Cliente> listarPorFechaAltaEntre(LocalDate desde, LocalDate hasta) {
+        return dao.traerClientesPorFechaAltaEntre(desde, hasta);
+    }
+    
 }
