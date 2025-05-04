@@ -15,6 +15,7 @@
         
         <!-- Mapeo Entidades  -->
         <mapping resource="mapeos/Persona.hbm.xml"/>
+        <mapping resource="mapeos/EstadoTurno.hbm.xml"/>
         
         
     </session-factory>
