@@ -22,6 +22,8 @@
     
 
     <many-to-one name="sucursal" column="idSucursal" class="datos.Sucursal" />
+    
+    <many-to-one name="estado" column="idEstado" class="datos.EstadoTurno" not-null="true"/>
 
   </class>
 

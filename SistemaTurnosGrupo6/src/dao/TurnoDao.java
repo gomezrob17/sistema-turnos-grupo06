@@ -2,10 +2,12 @@ package dao;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import datos.Profesional;
 import datos.Sucursal;
@@ -40,14 +42,16 @@ public class TurnoDao {
         return id;
     }
     
-    public Turno traerTurnoPorFechaYHora(LocalDate fecha, LocalTime hora, Sucursal sucursal) throws HibernateException {
+    public Turno traerTurnoPorFechaYHoraYProfesiona(LocalDate fecha, LocalTime hora, Sucursal sucursal, Profesional profesional) throws HibernateException {
         Turno turno = null;
         try {
             iniciaOperacion();
-            turno = (Turno) session.createQuery("from Turno t where t.fecha = :fecha and t.hora = :hora and t.sucursal = :sucursal")
+            turno = (Turno) session.createQuery(
+                "from Turno t where t.fecha = :fecha and t.hora = :hora and t.sucursal = :sucursal and t.profesiona = :profesional")
                 .setParameter("fecha", fecha)
                 .setParameter("hora", hora)
                 .setParameter("sucursal", sucursal)
+                .setParameter("profesional", profesional)
                 .uniqueResult();
         } finally {
             session.close();
@@ -82,4 +86,104 @@ public class TurnoDao {
             session.close();
         }
     }
+    
+    
+    public List<Turno> traerTurnosPorCliente(int idCliente) throws HibernateException {
+        List<Turno> lista = null;
+        try {
+            iniciaOperacion();
+            String hql = "FROM Turno t " +
+                         "JOIN FETCH t.cliente " +
+                         "JOIN FETCH t.profesiona " +
+                         "JOIN FETCH t.sucursal " +
+                         "JOIN FETCH t.estado " +
+                         "WHERE t.cliente.idPersona = :idCliente AND t.estado.nombre = 'Pendiente'";
+            lista = session.createQuery(hql, Turno.class)
+                           .setParameter("idCliente", idCliente)
+                           .list();
+        } finally {
+            if (session != null) session.close();
+        }
+        return lista;
+    }
+    
+    public List<Turno> traerTurnosPorProfesional(int idProfesional) throws HibernateException {
+        List<Turno> lista = null;
+        try {
+            iniciaOperacion();
+            String hql = "FROM Turno t " +
+                         "JOIN FETCH t.profesiona " +
+                         "JOIN FETCH t.cliente " +
+                         "JOIN FETCH t.sucursal " +
+                         "JOIN FETCH t.estado " +
+                         "WHERE t.profesiona.idPersona = :idProfesional AND t.estado.nombre = 'Pendiente'";
+            lista = session.createQuery(hql, Turno.class)
+                           .setParameter("idProfesional", idProfesional)
+                           .list();
+        } finally {
+            if (session != null) session.close();
+        }
+        return lista;
+    }
+    
+    public List<Turno> traerTurnosPorFechas(LocalDate fechaInicio, LocalDate fechaFin) throws HibernateException {
+        List<Turno> lista = null;
+        try {
+            iniciaOperacion();
+            String hql = "FROM Turno t " +
+                         "JOIN FETCH t.cliente " +
+                         "JOIN FETCH t.profesiona " +
+                         "JOIN FETCH t.sucursal " +
+                         "JOIN FETCH t.estado " +
+                         "WHERE t.fecha BETWEEN :fechaInicio AND :fechaFin";
+            lista = session.createQuery(hql, Turno.class)
+                           .setParameter("fechaInicio", fechaInicio)
+                           .setParameter("fechaFin", fechaFin)
+                           .list();
+        } finally {
+            if (session != null) session.close();
+        }
+        return lista;
+    }
+    
+    public List<Turno> traerTurnosPorNombreSucursal(String nombreSucursal) throws HibernateException {
+        List<Turno> lista = null;
+        try {
+            iniciaOperacion();
+            String hql = "FROM Turno t " +
+                         "JOIN FETCH t.cliente " +
+                         "JOIN FETCH t.profesiona " +
+                         "JOIN FETCH t.sucursal " +
+                         "JOIN FETCH t.estado " +
+                         "WHERE t.sucursal.nombre = :nombreSucursal";
+            lista = session.createQuery(hql, Turno.class)
+                           .setParameter("nombreSucursal", nombreSucursal)
+                           .list();
+        } finally {
+            if (session != null) session.close();
+        }
+        return lista;
+    }
+    
+    public List<Turno> traerTurnosPorFechaYSucursal(LocalDate fecha, String nombreSucursal) throws HibernateException {
+        List<Turno> lista = null;
+        try {
+            iniciaOperacion();
+            String hql = "FROM Turno t " +
+                         "JOIN FETCH t.cliente " +
+                         "JOIN FETCH t.profesiona " +
+                         "JOIN FETCH t.sucursal " +
+                         "JOIN FETCH t.estado " +
+                         "WHERE t.fecha = :fecha AND t.sucursal.nombre = :nombreSucursal";
+            lista = session.createQuery(hql, Turno.class)
+                           .setParameter("fecha", fecha)
+                           .setParameter("nombreSucursal", nombreSucursal)
+                           .list();
+        } finally {
+            if (session != null) session.close();
+        }
+        return lista;
+    }
+    
+    
 }

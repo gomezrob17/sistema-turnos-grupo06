@@ -11,16 +11,19 @@ public class Turno {
 	private Cliente cliente; 
 	private Profesional profesiona; 
 	private Sucursal sucursal;
+	private EstadoTurno estado; 
 	public Turno() {
     }
 	public Turno(LocalDate fecha, LocalTime hora, Cliente cliente, Profesional profesiona,
-			Sucursal sucursal) {
+			Sucursal sucursal, EstadoTurno estado) {
 		super();
+
 		this.fecha = fecha;
 		this.hora = hora;
 		this.cliente = cliente;
 		this.profesiona = profesiona;
 		this.sucursal = sucursal;
+		this.estado = estado;
 	}
 	public int getIdTurno() {
 		return idTurno;
@@ -58,10 +61,17 @@ public class Turno {
 	public void setSucursal(Sucursal sucursal) {
 		this.sucursal = sucursal;
 	}
+	public EstadoTurno getEstado() {
+		return estado;
+	}
+	public void setEstado(EstadoTurno estado) {
+		this.estado = estado;
+	}
 	@Override
 	public String toString() {
 		return "Turno [idTurno=" + idTurno + ", fecha=" + fecha + ", hora=" + hora + ", cliente=" + cliente
-				+ ", profesiona=" + profesiona + ", sucursal=" + sucursal + "]";
-	} 
+				+ ", profesiona=" + profesiona + ", sucursal=" + sucursal + ", estado=" + estado + "]";
+	}
+	
 	
 }

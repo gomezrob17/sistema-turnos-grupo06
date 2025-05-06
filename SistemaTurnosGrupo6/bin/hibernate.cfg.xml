@@ -17,5 +17,6 @@
         <mapping resource="mapeos/Persona.hbm.xml"/>
         <mapping resource="mapeos/Sucursal.hbm.xml"/>
         <mapping resource="mapeos/Turno.hbm.xml"/>
+        <mapping resource="mapeos/EstadoTurno.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
