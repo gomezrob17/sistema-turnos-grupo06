@@ -9,14 +9,13 @@ public class TestEstadoTurno {
 
 		EstadoTurnoABM estado = new EstadoTurnoABM();
 		
-		/*
 		// --- AGREGO ESTADOS ---
 		EstadoTurno e1 = new EstadoTurno("Pendiente");
 		EstadoTurno e2 = new EstadoTurno("Atendido");
 		EstadoTurno e3 = new EstadoTurno("Cancelado");
 
 		try {
-			System.out.println("AgregoEstado: ");
+			System.out.println("Agrego Estado: ");
 			estado.agregarEstado(e1);
 			System.out.println("Cliente agregado: " + e1);
 			estado.agregarEstado(e2);
@@ -26,6 +25,7 @@ public class TestEstadoTurno {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		/*
 		// --- Modifico Estados ---
 		try {

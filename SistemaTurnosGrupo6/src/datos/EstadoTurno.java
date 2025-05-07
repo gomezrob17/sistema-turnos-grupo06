@@ -15,7 +15,7 @@ public class EstadoTurno {
 	public int getIdEstado() {
 		return idEstado;
 	}
-	protected void setIdEstado(int idEstado) {
+	public void setIdEstado(int idEstado) {
 		this.idEstado = idEstado;
 	}
 	public String getNombre() {

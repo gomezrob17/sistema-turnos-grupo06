@@ -18,6 +18,7 @@
       <key column="idPersona" />
       <property name="fechaAlta" />
       <property name="activo" />
+	  <one-to-one name="contacto" class="datos.Contacto"/>
     </joined-subclass>
 
 <!-- Atributos de la clase Profesional -->
@@ -26,7 +27,11 @@
       <property name="matricula" />
       <property name="sueldo" />
       <property name="activo" />
-    </joined-subclass>
+      <set table="profesional_especialidad" name="especialidades" outer-join="true">	
+		<key column="idProfesional"/>
+	    <many-to-many column="idEspecialidad" class="datos.Especialidad"/>
+	  </set>
+	 </joined-subclass>
     
   </class>
 </hibernate-mapping>

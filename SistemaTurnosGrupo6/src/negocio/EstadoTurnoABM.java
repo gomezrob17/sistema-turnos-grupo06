@@ -9,7 +9,7 @@ public class EstadoTurnoABM {
 	EstadoTurnoDao dao = new EstadoTurnoDao();
 	
 	public int agregarEstado(EstadoTurno e) throws Exception {
-		if(dao.traerEstadoPorId(e.getIdEstado()) != null) throw new Exception("Estado ya existente");
+		if(dao.traerEstadoPorNombre(e.getNombre()) != null) throw new Exception("Estado ya existente");
 		return dao.agregarEstado(e);
 	}
 	

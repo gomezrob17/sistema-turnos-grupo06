@@ -1,6 +1,7 @@
 package negocio;
 
 import dao.ProfesionalDao;
+import datos.Cliente;
 import datos.Profesional;
 
 import java.util.List;
@@ -52,4 +53,24 @@ public class ProfesionalABM {
     public List<Profesional> traerTodos() {
         return dao.traerTodosLosProfesionales();
     }
+    
+/*CONSULTAR PROFESIONAL POR MATRICULA*/
+    public Profesional consultarPorMatricula(String matricula) throws Exception {
+        Profesional p = dao.traerPorMatricula(matricula);
+        if (p == null) {
+            throw new Exception("NO EXISTE NINGUN PROFESIONAL CON MATRICULA: " + matricula);
+        }
+        return p;
+    }
+    
+/*LISTAR PROFESIONALES ACTIVOS ES DECIR, ACTIVO = TRUE*/    
+    public List<Profesional> listarProfesionalesActivos() {
+        return dao.listarProfesionalesActivos();
+    }    
+    
+/*LISTAR PROFESIONALES CON SUELDO MAYOR A EL MONTO RECIBIDO POR PARAMETRO*/        
+    public List<Profesional> listarPorSueldoMayor(double sueldoMin) {
+        return dao.listarProfesionalesConSueldoMayor(sueldoMin);
+    }
+    
 }

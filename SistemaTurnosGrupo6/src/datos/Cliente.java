@@ -6,14 +6,16 @@ public class Cliente extends Persona {
 
 	private LocalDate fechaAlta;
     private boolean activo;
+    private Contacto contacto;
 	
     public Cliente() {
 	}
 
-	public Cliente(int dni, String nombre, String apellido, LocalDate fechaAlta, boolean activo) {
+	public Cliente(int dni, String nombre, String apellido, LocalDate fechaAlta, boolean activo /*,Contacto contacto*/) {
 		super(dni,nombre,apellido);
 		this.fechaAlta = fechaAlta;
 		this.activo = activo;
+		//this.contacto = contacto;
 	}
 
 	
@@ -32,16 +34,31 @@ public class Cliente extends Persona {
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
+	
+	
+	public Contacto getContacto() {
+		return contacto;
+	}
+
+	public void setContacto(Contacto contacto) {
+		this.contacto = contacto;
+	}
 
 	@Override
 	public String toString() {
-		return "Cliente [ "+ super.toString()+", fechaAlta=" + fechaAlta + ", activo=" + activo + "]";
+		return "Cliente ["+ super.toString()+", fechaAlta=" + fechaAlta + ", activo=" + activo + "]";
 	}
-    
-    
-    
-    
-    
+
+	public void vincularContacto(Contacto contacto) {
+	    this.contacto = contacto;
+	    contacto.setCliente(this);
+	}
+	
+	//para cuando la clase contacto sea creada
+//	@Override
+	public String toStringConContacto() {
+		return "Cliente ["+ super.toString()+", fechaAlta=" + fechaAlta + ", activo=" + activo + ", \n Datos de " + contacto + "]";
+	}
     
 	
 }

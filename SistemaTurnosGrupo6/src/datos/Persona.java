@@ -2,7 +2,7 @@ package datos;
 
 public abstract class Persona {
 	
- private int idPersona;
+ protected int idPersona;
  private int dni;
  private String nombre;
  private String apellido;

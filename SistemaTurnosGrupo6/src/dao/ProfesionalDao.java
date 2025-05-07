@@ -4,6 +4,8 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import datos.Cliente;
 import datos.Profesional;
 
 public class ProfesionalDao {
@@ -94,4 +96,46 @@ public class ProfesionalDao {
         }
         return lista;
     }
+    
+    
+    public Profesional traerPorMatricula(String matricula) throws HibernateException {
+        Profesional objeto = null;
+        try {
+            iniciaOperacion();
+            objeto = (Profesional) session.createQuery("from Profesional p where p.matricula = :mat").setParameter("mat", matricula).uniqueResult();
+            
+        } finally {
+            session.close();
+        }
+        return objeto;
+    }
+
+    
+    @SuppressWarnings("unchecked")
+    public List<Profesional> listarProfesionalesActivos() throws HibernateException {
+        List<Profesional> lista = null;
+        try {
+            iniciaOperacion();
+            lista = session.createQuery("from Profesional p where p.activo = true order by p.apellido asc, p.nombre asc").list();
+        } finally {
+            session.close();
+        }
+        return lista;
+    }
+    
+    
+    @SuppressWarnings("unchecked")
+    public List<Profesional> listarProfesionalesConSueldoMayor(double sueldoMin) throws HibernateException {
+        List<Profesional> lista = null;
+        try {
+            iniciaOperacion();
+            lista = (List<Profesional>) session.createQuery("from Profesional p where p.sueldo > :sueldoMin order by p.apellido asc, p.nombre asc").setParameter("sueldoMin", sueldoMin).list();
+        } finally {
+            session.close();
+        }
+        return lista;
+    }
+    
+    
+    
 }
