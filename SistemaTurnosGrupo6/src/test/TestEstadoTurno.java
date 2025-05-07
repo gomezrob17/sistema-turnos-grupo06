@@ -26,30 +26,31 @@ public class TestEstadoTurno {
 			e.printStackTrace();
 		}
 		
-		/*
-		// --- Modifico Estados ---
-		try {
-			EstadoTurno e4 = estado.traerEstadoPorId(2);
-			System.out.println("Estado actual: " + e4);
-			e4.setNombre("En Proceso");
-			estado.modificarEstado(e4);
-			System.out.println("Estado modificado: " + e4);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	
-		// --- Elimino un Estado ---
-		try {
-			EstadoTurno e5 = estado.traerEstadoPorId(3);
-			estado.EliminarEstado(e5);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		*/
+//		System.out.println(estado.traerTodosLosEstados());
+		
+//		// --- Modifico Estados ---
+//		try {
+//			EstadoTurno e4 = estado.traerEstadoPorId(2);
+//			System.out.println("Estado actual: " + e4);
+//			e4.setNombre("En Proceso");
+//			estado.modificarEstado(e4);
+//			System.out.println("Estado modificado: " + e4);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	
+//		// --- Elimino un Estado ---
+//		try {
+//			EstadoTurno e5 = estado.traerEstadoPorId(3);
+//			estado.EliminarEstado(e5);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		
 		
 		// --- Traer estado por ID ---
 		try {
+			System.out.println("Traemos estados con Id 2: ");
 			System.out.println(estado.traerEstadoPorId(2));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -57,6 +58,7 @@ public class TestEstadoTurno {
 		
 		// --- Traer estado por Nombre ---
 		try {
+			System.out.println("Traemos estados Atendidos: ");
 			System.out.println(estado.traerEstadoPorNombre("Atendido"));
 		} catch (Exception e) {
 			e.printStackTrace();

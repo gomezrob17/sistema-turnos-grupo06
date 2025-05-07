@@ -76,9 +76,8 @@ public class EstadoTurnoDao {
 		EstadoTurno estado = null;
 		try {
 			iniciaOperacion();
-			Query<EstadoTurno> query = session.createQuery("from EstadoTurno c where c.nombre = :nombre", EstadoTurno.class)
-					.setParameter("nombre", nombre);
-			estado = query.uniqueResult();
+			estado = (EstadoTurno) session.createQuery("from EstadoTurno c where c.nombre = :nombre", EstadoTurno.class)
+					.setParameter("nombre", nombre).uniqueResult();
 		} finally {
 			session.close();
 		}

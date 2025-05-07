@@ -187,6 +187,8 @@ public class TurnoDao {
     }
     
     // --- 2da Parte ---
+    
+    // Traer Turnos por Especialidad
     public List<Turno> traerTurnosPorEspecialidad(String nombreEspecialidad) throws HibernateException {
         List<Turno> lista = null;
         try {
@@ -207,7 +209,7 @@ public class TurnoDao {
         return lista;
     }
     
-    // Hubo un problema al inicio porque al hacer la consulta para llamar a todos los turnos, no se declaro el fetch para cada clase. Ya esta solucionado
+    // Ver Detalles de Turnos
     public List<Turno> traerTurnos() throws HibernateException{
 		List<Turno> lista = null;
 		try {
@@ -224,6 +226,7 @@ public class TurnoDao {
 		return  lista;
 	}
     
+    //Traer Turnos por Estado (Pendiente/Atendido/Cancelado)
     public List<Turno> traerTurnosPorEstado(String nombreEstado) throws HibernateException {
         List<Turno> lista = null;
         try {
@@ -243,6 +246,7 @@ public class TurnoDao {
         return lista;
     }
     
+    // Confirmados = Pendientes (No Atendidos)
     public List<Turno> traerTurnosConfirmadosPorFecha(LocalDate fechaInicio, LocalDate fechaFin) throws HibernateException {
         List<Turno> lista = null;
         try {
@@ -283,6 +287,7 @@ public class TurnoDao {
         return lista;
     }
     
+    
     public List<Turno> traerTurnosPorFechaYEstado(LocalDate fecha, String nombreEstado) throws HibernateException {
         List<Turno> lista = null;
         try {
@@ -296,27 +301,6 @@ public class TurnoDao {
             Query<Turno> query = session.createQuery(hql, Turno.class)
                            .setParameter("fecha", fecha)
                            .setParameter("nombreEstado", nombreEstado);
-            lista = query.getResultList();
-        } finally {
-        	if (session != null) session.close();
-        }
-        return lista;
-    }
-    
-    public List<Turno> traerTurnosPorFechaYEspecialidad(LocalDate fecha, String nombreEspecialidad) throws HibernateException {
-        List<Turno> lista = null;
-        try {
-            iniciaOperacion();
-            String hql = "FROM Turno t " +
-                         "JOIN FETCH t.cliente " +
-                         "JOIN FETCH t.profesional p " +
-                         "JOIN FETCH p.especialidades e " +		// Profesional tiene el set llamado "especialidades" para este caso
-                         "JOIN FETCH t.sucursal " +
-                         "JOIN FETCH t.estado " +
-                         "WHERE t.fecha = :fecha AND e.nombre = :nombreEspecialidad";
-            Query<Turno> query = session.createQuery(hql, Turno.class)
-                           .setParameter("fecha", fecha)
-                           .setParameter("nombreEspecialidad", nombreEspecialidad);
             lista = query.getResultList();
         } finally {
         	if (session != null) session.close();
@@ -343,5 +327,29 @@ public class TurnoDao {
         }
         return lista;
     }
+    
+    // Punto importante!
+    public List<Turno> traerTurnosPorFechaYEspecialidad(LocalDate fecha, String nombreEspecialidad) throws HibernateException {
+        List<Turno> lista = null;
+        try {
+            iniciaOperacion();
+            String hql = "FROM Turno t " +
+                         "JOIN FETCH t.cliente " +
+                         "JOIN FETCH t.profesional p " +
+                         "JOIN FETCH p.especialidades e " +		// Profesional tiene el set llamado "especialidades" para este caso
+                         "JOIN FETCH t.sucursal " +
+                         "JOIN FETCH t.estado " +
+                         "WHERE t.fecha = :fecha AND e.nombre = :nombreEspecialidad";
+            Query<Turno> query = session.createQuery(hql, Turno.class)
+                           .setParameter("fecha", fecha)
+                           .setParameter("nombreEspecialidad", nombreEspecialidad);
+            lista = query.getResultList();
+        } finally {
+        	if (session != null) session.close();
+        }
+        return lista;
+    }
+    
+    
     
 }

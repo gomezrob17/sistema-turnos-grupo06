@@ -35,7 +35,7 @@ public class EstadoTurnoABM {
 	
 	public EstadoTurno traerEstadoPorNombre(String nombre) throws Exception {
 		EstadoTurno estado = dao.traerEstadoPorNombre(nombre);
-		if(estado == null) throw new Exception("Nombre no encontrado");
+		if(estado == null) throw new Exception("Nombre de estado no encontrado");
 		return estado;
 	}
 	

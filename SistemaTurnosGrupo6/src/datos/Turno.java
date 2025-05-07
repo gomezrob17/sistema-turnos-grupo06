@@ -72,7 +72,7 @@ public class Turno {
 	@Override
 	public String toString() {
 		return "Turno [idTurno=" + idTurno + ", fecha=" + fecha + ", hora=" + hora + ", cliente=" + cliente
-				+ ", profesional=" + profesional + ", sucursal=" + sucursal + ", estado=" + estado + "]";
+				+ ", profesional=" + profesional + ", sucursal=" + sucursal + ", estado=" + estado + "]\n";
 	}
 	
 	
