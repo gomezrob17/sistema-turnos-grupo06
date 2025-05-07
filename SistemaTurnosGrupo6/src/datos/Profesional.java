@@ -63,22 +63,12 @@ public class Profesional extends Persona {
 	public void setEspecialidades(Set<Especialidad> especialidades) {
 		this.especialidades = especialidades;
 	}
-	
-/*	public Especialidad getEspecialidad() {
-		return especialidad;
-	}
-
-
-	public void setEspecialidad(Especialidad especialidad) {
-		this.especialidad = especialidad;
-	}*/
 
 
 	@Override
 	public String toString() {
 		return "Profesional [" + super.toString()+ ",matricula=" + matricula + ", sueldo=" + sueldo + ", activo=" + activo + "]";
 	}
-
 
 	public boolean equals(Profesional profesional){return (idPersona==profesional.getIdPersona());}
 	
@@ -101,7 +91,7 @@ public class Profesional extends Persona {
 		eliminar=especialidades.remove(borrar);
 		return eliminar;
 		}
-	
+
 	
 	//para cuando la clase especialidad sea creada
 //	@Override

@@ -19,6 +19,7 @@
       <property name="fechaAlta" />
       <property name="activo" />
 	  <one-to-one name="contacto" class="datos.Contacto"/>
+
     </joined-subclass>
 
 <!-- Atributos de la clase Profesional -->

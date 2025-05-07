@@ -7,6 +7,7 @@ public class Cliente extends Persona {
 	private LocalDate fechaAlta;
     private boolean activo;
     private Contacto contacto;
+
 	
     public Cliente() {
 	}
@@ -35,7 +36,6 @@ public class Cliente extends Persona {
 		this.activo = activo;
 	}
 	
-	
 	public Contacto getContacto() {
 		return contacto;
 	}
@@ -43,6 +43,7 @@ public class Cliente extends Persona {
 	public void setContacto(Contacto contacto) {
 		this.contacto = contacto;
 	}
+
 
 	@Override
 	public String toString() {
@@ -55,10 +56,11 @@ public class Cliente extends Persona {
 	}
 	
 	//para cuando la clase contacto sea creada
-//	@Override
+	@Override
 	public String toStringConContacto() {
 		return "Cliente ["+ super.toString()+", fechaAlta=" + fechaAlta + ", activo=" + activo + ", \n Datos de " + contacto + "]";
 	}
+
     
 	
 }
