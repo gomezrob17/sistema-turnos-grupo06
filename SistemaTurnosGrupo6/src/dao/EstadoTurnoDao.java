@@ -23,7 +23,7 @@ public class EstadoTurnoDao {
 		throw new HibernateException("ERROR en la capa de acceso a datos", he);
 	}
 	
-	public int agregarEstado(EstadoTurno objeto) {
+	public int agregarEstado(EstadoTurno objeto) throws HibernateException{
 		int id = 0;
 		try {
 			iniciaOperacion();
@@ -76,9 +76,8 @@ public class EstadoTurnoDao {
 		EstadoTurno estado = null;
 		try {
 			iniciaOperacion();
-			estado = (EstadoTurno) session.createQuery("from EstadoTurno c where c.nombre = :nombre")
-					.setParameter("nombre", nombre)
-					.uniqueResult();
+			estado = (EstadoTurno) session.createQuery("from EstadoTurno c where c.nombre = :nombre", EstadoTurno.class)
+					.setParameter("nombre", nombre).uniqueResult();
 		} finally {
 			session.close();
 		}

@@ -2,7 +2,9 @@
 package test;
 
 import datos.Cliente;
+import datos.Especialidad;
 import datos.Profesional;
+import negocio.EspecialidadABM;
 import negocio.ProfesionalABM;
 
 import java.util.List;
@@ -11,24 +13,38 @@ public class TestProfesional {
 
     public static void main(String[] args) {
         ProfesionalABM profesionalABM = new ProfesionalABM();
+        EspecialidadABM especialidadABM = new EspecialidadABM();
 
         try {
-        	 // Agregar los profesionales
-//        	System.out.println("********************* AGREGAR PROFESIONALES ********************************************");
-//            Profesional p1 = new Profesional(39500011, "Alvaro","Silva","MATR-1001", 80000, true);
-//            Profesional p2 = new Profesional(39600022, "Jorge","Ramirez","MATR-1002", 90000, false);
-//            Profesional p3 = new Profesional(39700033, "Laura","Perez","MATR-1003", 85000, false);
-//            Profesional p4 = new Profesional(39800044, "Diego","Luna","MATR-1004", 95000, true);
-//
-//            profesionalABM.agregarProfesional(p1);
-//            profesionalABM.agregarProfesional(p2);
-//            profesionalABM.agregarProfesional(p3);
-//            profesionalABM.agregarProfesional(p4);
-//
-//        	System.out.println("PROFESIONAL AGREGADO : " + p1);
-//        	System.out.println("PROFESIONAL AGREGADO : " + p2);
-//        	System.out.println("PROFESIONAL AGREGADO : " + p3);
-//        	System.out.println("PROFESIONAL AGREGADO : " + p4);
+        	// Agregar los profesionales
+        	System.out.println("********************* AGREGAR PROFESIONALES ********************************************");
+            Profesional p1 = new Profesional(39500011, "Alvaro","Silva","MATR-1001", 80000, true);
+            Profesional p2 = new Profesional(39600022, "Jorge","Ramirez","MATR-1002", 90000, false);
+            Profesional p3 = new Profesional(39700033, "Laura","Perez","MATR-1003", 85000, false);
+            Profesional p4 = new Profesional(39800044, "Diego","Luna","MATR-1004", 95000, true);
+            Especialidad e1 = new Especialidad("Cardiologia");
+            Especialidad e2 = new Especialidad("Administracion");
+            Especialidad e3 = new Especialidad("Medico Clinico");
+            
+            especialidadABM.agregarEspecialidad(e1);
+            especialidadABM.agregarEspecialidad(e2);
+            especialidadABM.agregarEspecialidad(e3);
+
+            p1.agregar(e1);
+            p2.agregar(e2);
+            p3.agregar(e2);
+            p4.agregar(e3);
+            
+            
+            profesionalABM.agregarProfesional(p1);
+            profesionalABM.agregarProfesional(p2);
+            profesionalABM.agregarProfesional(p3);
+            profesionalABM.agregarProfesional(p4);
+
+        	System.out.println("PROFESIONAL AGREGADO : " + p1);
+        	System.out.println("PROFESIONAL AGREGADO : " + p2);
+        	System.out.println("PROFESIONAL AGREGADO : " + p3);
+        	System.out.println("PROFESIONAL AGREGADO : " + p4);
 
          // Traer un profesional por DNI
 //        	System.out.println("********************* TRAER PROFESIONAL DNI********************************************");
@@ -52,14 +68,14 @@ public class TestProfesional {
             profesionalABM.eliminarProfesional(existeEnDB);
 	        */
  
-            /*
+            
             //Traer todos los profesionales guardados
             System.out.println("********************* TRAER TODOS LOS PROFESIONALES********************************************");
             List<Profesional> todos = profesionalABM.traerTodos();
             System.out.println("\n*** Todos los profesionales ***");
             for (Profesional profesionales : todos) {
                 System.out.println(profesionales);
-            }*/
+            }
 
         	//Consultar profesional por matricula
             System.out.println("********************* CONSULTAR PROFESIONAL POR MATRICULA ********************************************");
