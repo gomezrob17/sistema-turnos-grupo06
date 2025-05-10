@@ -10,19 +10,17 @@ public class Profesional extends Persona {
     private double sueldo;
     private boolean activo;
 	private Set<Especialidad> especialidades = new HashSet<>();
-    //private Especialidad especialidad;
 	
     
     public Profesional() {
 	}
 
 
-	public Profesional(int dni, String nombre, String apellido,String matricula, double sueldo, boolean activo/*,Especialidad especialidad*/) {
+	public Profesional(int dni, String nombre, String apellido,String matricula, double sueldo, boolean activo) {
 		super(dni,nombre,apellido);
 		this.matricula = matricula;
 		this.sueldo = sueldo;
 		this.activo = activo;
-		//this.especialidad = especialidad;
 	}
 
 
@@ -65,10 +63,10 @@ public class Profesional extends Persona {
 	}
 
 
-	@Override
-	public String toString() {
-		return "Profesional [" + super.toString()+ ",matricula=" + matricula + ", sueldo=" + sueldo + ", activo=" + activo + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Profesional [" + super.toString()+ ",matricula=" + matricula + ", sueldo=" + sueldo + ", activo=" + activo + "]";
+//	}
 
 	public boolean equals(Profesional profesional){return (idPersona==profesional.getIdPersona());}
 	
@@ -94,10 +92,10 @@ public class Profesional extends Persona {
 
 	
 	//para cuando la clase especialidad sea creada
-//	@Override
-//	public String toString() {
-//		return "Profesional [" + super.toString()+ ",matricula=" + matricula + ", sueldo=" + sueldo + ", activo=" + activo + ", especialidad=" + especialidad + "]";
-//	}
+	@Override
+	public String toString() {
+		return "Profesional [" + super.toString()+ ",matricula=" + matricula + ", sueldo=" + sueldo + ", activo=" + activo + ", especialidad=" + especialidades.toString() + "]";
+	}
 	
 	
 }
