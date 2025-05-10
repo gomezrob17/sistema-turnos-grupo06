@@ -28,7 +28,7 @@
       <property name="matricula" />
       <property name="sueldo" />
       <property name="activo" />
-      <set table="profesional_especialidad" name="especialidades" outer-join="true">	
+      <set table="profesional_especialidad" name="especialidades" outer-join="true" lazy="false" cascade="all">	
 		<key column="idProfesional"/>
 	    <many-to-many column="idEspecialidad" class="datos.Especialidad"/>
 	  </set>
